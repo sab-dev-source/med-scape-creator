@@ -16,17 +16,17 @@ const ProfessionalHeroSection = () => {
     <WavyBackground
       containerClassName="min-h-screen"
       colors={[
-        "#1e293b", // slate-800
-        "#334155", // slate-700
-        "#475569", // slate-600
-        "#64748b", // slate-500
-        "#94a3b8", // slate-400
+        "#38bdf8", // sky-400
+        "#818cf8", // indigo-400
+        "#c084fc", // purple-400
+        "#e879f9", // fuchsia-400
+        "#22d3ee", // cyan-400
       ]}
-      waveWidth={30}
+      waveWidth={50}
       backgroundFill="#0f172a" // slate-900
       speed="slow"
-      blur={15}
-      waveOpacity={0.3}
+      blur={10}
+      waveOpacity={0.5}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}
