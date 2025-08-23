@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -19,7 +18,7 @@ import {
   Sparkles
 } from "lucide-react";
 import { EnhancedCard, StatsCard } from "@/components/ui/enhanced-card";
-import ModernHeroSection from "@/components/ModernHeroSection";
+import ProfessionalHeroSection from "@/components/ProfessionalHeroSection";
 
 const Index = () => {
   const features = [
@@ -114,8 +113,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Modern Hero Section */}
-      <ModernHeroSection />
+      {/* Professional Hero Section */}
+      <ProfessionalHeroSection />
 
       {/* Enhanced Stats Section */}
       <section className="section-modern bg-white/50 backdrop-blur-sm">
