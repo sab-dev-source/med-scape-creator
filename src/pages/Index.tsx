@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -116,9 +117,9 @@ const Index = () => {
       {/* Professional Hero Section */}
       <ProfessionalHeroSection />
 
-      {/* Enhanced Stats Section */}
-      <section className="section-modern bg-white/50 backdrop-blur-sm">
-        <div className="container-modern">
+      {/* Enhanced Stats Section - Proper spacing */}
+      <section className="py-20 bg-white/95 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <StatsCard
@@ -135,8 +136,8 @@ const Index = () => {
       </section>
 
       {/* Enhanced Features Section */}
-      <section className="section-modern bg-gradient-primary-soft">
-        <div className="container-modern">
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -145,16 +146,16 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="flex justify-center mb-6">
-              <div className="glass-primary rounded-full px-6 py-3 flex items-center space-x-2">
+              <div className="bg-primary/10 backdrop-blur-md rounded-full px-6 py-3 flex items-center space-x-2 border border-primary/20">
                 <Sparkles className="w-5 h-5 text-primary" />
                 <span className="text-sm font-semibold text-primary">
                   Why Choose BlueBridge
                 </span>
               </div>
             </div>
-            <h2 className="text-section-title text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
               Experience the Future of{" "}
-              <span className="text-gradient-primary">Recruitment</span>
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Recruitment</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Cutting-edge technology meets personalized service to transform how professionals find careers
@@ -179,8 +180,8 @@ const Index = () => {
       </section>
 
       {/* Enhanced Testimonials Section */}
-      <section className="section-modern bg-white">
-        <div className="container-modern">
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -188,8 +189,8 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-section-title text-foreground mb-6">
-              Trusted by <span className="text-gradient-coral">Thousands</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
+              Trusted by <span className="bg-gradient-to-r from-coral to-purple bg-clip-text text-transparent">Thousands</span>
             </h2>
             <p className="text-xl text-muted-foreground">
               See what our community says about their BlueBridge experience
@@ -208,9 +209,9 @@ const Index = () => {
                 <div className="flex items-center mb-6">
                   <div className={cn(
                     "w-12 h-12 rounded-full flex items-center justify-center mr-4 font-bold text-white",
-                    testimonial.category === "tech" && "bg-gradient-primary",
-                    testimonial.category === "sales" && "bg-gradient-success",
-                    testimonial.category === "design" && "bg-gradient-purple"
+                    testimonial.category === "tech" && "bg-gradient-to-r from-primary to-accent",
+                    testimonial.category === "sales" && "bg-gradient-to-r from-success to-accent",
+                    testimonial.category === "design" && "bg-gradient-to-r from-purple to-coral"
                   )}>
                     <span>{testimonial.avatar}</span>
                   </div>
@@ -229,7 +230,7 @@ const Index = () => {
       </section>
 
       {/* Enhanced CTA Section */}
-      <section className="section-modern bg-gradient-hero text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute top-1/4 right-1/4 w-64 h-64 bg-accent/20 rounded-full blur-3xl"
@@ -249,14 +250,14 @@ const Index = () => {
           />
         </div>
 
-        <div className="container-modern relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             {/* Job Seekers */}
             <EnhancedCard
               variant="glass"
               className="p-10 text-center border-white/20 bg-white/10 backdrop-blur-md"
             >
-              <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-glass">
+              <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-8">
                 <Users className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold mb-6 text-white">For Professionals</h3>
@@ -267,7 +268,7 @@ const Index = () => {
               <Link to="/upload-resume">
                 <Button 
                   size="lg" 
-                  className="w-full bg-white text-primary hover:bg-white/90 py-4 text-lg font-semibold shadow-glass hover:shadow-premium transition-all duration-300"
+                  className="w-full bg-white text-primary hover:bg-white/90 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   Find Opportunities
                   <ArrowRight className="w-6 h-6 ml-3" />
@@ -280,7 +281,7 @@ const Index = () => {
               variant="glass"
               className="p-10 text-center border-white/20 bg-white/10 backdrop-blur-md"
             >
-              <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-8 shadow-glass">
+              <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-8">
                 <Building className="w-10 h-10 text-white" />
               </div>
               <h3 className="text-3xl font-bold mb-6 text-white">For Employers</h3>
@@ -291,7 +292,7 @@ const Index = () => {
               <Link to="/hire">
                 <Button 
                   size="lg" 
-                  className="w-full bg-white text-primary hover:bg-white/90 py-4 text-lg font-semibold shadow-glass hover:shadow-premium transition-all duration-300"
+                  className="w-full bg-white text-primary hover:bg-white/90 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105"
                 >
                   Start Hiring
                   <ArrowRight className="w-6 h-6 ml-3" />

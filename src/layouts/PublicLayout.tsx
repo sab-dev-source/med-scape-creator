@@ -4,8 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GlobalVoiceBot from "@/components/GlobalVoiceBot";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 
 const PublicLayout = () => {
+  useScrollToTop();
+  
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Header />
@@ -18,7 +21,7 @@ const PublicLayout = () => {
             duration: 0.4,
             ease: [0.25, 0.4, 0.55, 1.4]
           }}
-          className="flex-1 bg-white pt-6"
+          className="flex-1 bg-white"
         >
           <Outlet />
         </motion.main>
