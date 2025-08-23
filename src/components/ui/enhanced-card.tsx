@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
@@ -8,7 +7,7 @@ interface EnhancedCardProps {
   className?: string;
   delay?: number;
   hover?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
   onClick?: () => void;
   variant?: "default" | "glass" | "premium" | "neumorphic" | "gradient";
   category?: "tech" | "design" | "sales" | "marketing" | "finance";
@@ -130,9 +129,11 @@ export const EnhancedCard = ({
       )}
 
       {/* Content */}
-      <div className="relative z-10">
-        {children}
-      </div>
+      {children && (
+        <div className="relative z-10">
+          {children}
+        </div>
+      )}
 
       {/* Gradient overlay on hover */}
       <motion.div
