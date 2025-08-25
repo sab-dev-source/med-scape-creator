@@ -4,48 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Upload, Search, Mic, ArrowRight, Sparkles } from "lucide-react";
 import { WavyBackground } from "@/components/ui/wavy-background";
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
 const ProfessionalHeroSection = () => {
-  const successfulUsers = [
-    {
-      id: 1,
-      name: "Sarah Chen",
-      designation: "Senior Developer",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612c0e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-    },
-    {
-      id: 2,
-      name: "Michael Rodriguez",
-      designation: "Product Manager",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
-    },
-    {
-      id: 3,
-      name: "Lisa Wang",
-      designation: "UX Designer",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    },
-    {
-      id: 4,
-      name: "James Johnson",
-      designation: "Data Scientist",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
-    },
-    {
-      id: 5,
-      name: "Emily Davis",
-      designation: "Marketing Director",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
-    },
-    {
-      id: 6,
-      name: "David Kim",
-      designation: "Tech Lead",
-      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
-    },
-  ];
-
   return (
     <WavyBackground 
       containerClassName="min-h-screen flex items-center justify-center" 
@@ -124,21 +84,6 @@ const ProfessionalHeroSection = () => {
                 Explore Opportunities
               </Button>
             </Link>
-          </motion.div>
-
-          {/* Animated Tooltip Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.8, delay: 0.8 }} 
-            className="pt-12 max-w-4xl mx-auto"
-          >
-            <div className="text-center mb-6">
-              <p className="text-white/80 text-lg mb-4">
-                Join thousands of professionals who found their dream careers
-              </p>
-              <AnimatedTooltip items={successfulUsers} />
-            </div>
           </motion.div>
         </div>
       </div>

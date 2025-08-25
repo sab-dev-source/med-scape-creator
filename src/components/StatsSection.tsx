@@ -1,5 +1,6 @@
 
 import { Briefcase, Users, Building, TrendingUp } from "lucide-react";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 
 const StatsSection = () => {
   const stats = [
@@ -29,6 +30,45 @@ const StatsSection = () => {
     }
   ];
 
+  const successfulUsers = [
+    {
+      id: 1,
+      name: "Sarah Chen",
+      designation: "Senior Developer",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612c0e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      id: 2,
+      name: "Michael Rodriguez",
+      designation: "Product Manager",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      id: 3,
+      name: "Lisa Wang",
+      designation: "UX Designer",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    {
+      id: 4,
+      name: "James Johnson",
+      designation: "Data Scientist",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+    },
+    {
+      id: 5,
+      name: "Emily Davis",
+      designation: "Marketing Director",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    {
+      id: 6,
+      name: "David Kim",
+      designation: "Tech Lead",
+      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+    },
+  ];
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,9 +76,19 @@ const StatsSection = () => {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Trusted by Industry Leaders
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 mb-8">
             Join thousands of professionals and companies who've found success with BlueBridge
           </p>
+          
+          {/* Animated Tooltip Section */}
+          <div className="mb-12">
+            <p className="text-gray-700 text-lg mb-6 font-medium">
+              Meet some of the professionals who found their dream careers
+            </p>
+            <div className="flex justify-center">
+              <AnimatedTooltip items={successfulUsers} />
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
