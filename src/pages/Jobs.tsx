@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { MagnifyingGlass, MapPin, Briefcase, Clock, CurrencyDollar, GraduationCap, ChevronDown } from "lucide-react";
+import { Search, MapPin, Briefcase, Clock, DollarSign, GraduationCap, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Jobs = () => {
@@ -142,7 +142,7 @@ const Jobs = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <MagnifyingGlass className="absolute left-4 top-3 h-6 w-6 text-muted-foreground" />
+            <Search className="absolute left-4 top-3 h-6 w-6 text-muted-foreground" />
           </div>
           <div className="relative">
             <Input
@@ -188,7 +188,7 @@ const Jobs = () => {
                   <span className="text-sm text-muted-foreground">{job.type}</span>
                 </div>
                 <div className="flex items-center space-x-2 mb-3">
-                  <CurrencyDollar className="h-4 w-4 text-muted-foreground" />
+                  <DollarSign className="h-4 w-4 text-muted-foreground" />
                   <span className="text-sm text-muted-foreground">{job.salary}</span>
                 </div>
                 <div className="flex items-center space-x-2">
