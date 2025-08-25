@@ -104,7 +104,7 @@ const Jobs = () => {
       job.location.toLowerCase().includes(locationFilter.toLowerCase())
     );
 
-    if (jobTypeFilter) {
+    if (jobTypeFilter && jobTypeFilter !== "all") {
       results = results.filter(job => job.type === jobTypeFilter);
     }
 
@@ -160,7 +160,7 @@ const Jobs = () => {
                 <SelectValue placeholder="Select job type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Job Types</SelectItem>
+                <SelectItem value="all">All Job Types</SelectItem>
                 <SelectItem value="Full-time">Full-time</SelectItem>
                 <SelectItem value="Part-time">Part-time</SelectItem>
                 <SelectItem value="Contract">Contract</SelectItem>
