@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const AuthLayout = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden pt-24 sm:pt-28">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background elements */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-slate-600/5"
@@ -39,7 +39,7 @@ const AuthLayout = () => {
       </div>
       
       <motion.div 
-        className="mt-8 sm:mx-auto sm:w-full sm:max-w-3xl relative z-10"
+  className="mt-8 sm:mx-auto sm:w-full sm:max-w-3xl relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}

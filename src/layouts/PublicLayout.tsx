@@ -21,7 +21,7 @@ const PublicLayout = () => {
             duration: 0.4,
             ease: [0.25, 0.4, 0.55, 1.4]
           }}
-          className="flex-1 bg-white pt-24 sm:pt-28 md:pt-32"
+          className="flex-1 bg-white"
         >
           <Outlet />
         </motion.main>
