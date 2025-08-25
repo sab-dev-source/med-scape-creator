@@ -1,5 +1,7 @@
 
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ... keep existing code (existing CSS) */
 
@@ -10,7 +12,7 @@
   height: 100vh;
   overflow: hidden;
   transition: all 0.3s ease;
-  background: linear-gradient(135deg, hsl(215, 98%, 61%) 0%, hsl(215, 84%, 67%) 100%);
+  background: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(221, 83%, 53%) 100%);
 }
 
 .login-container.dark {
@@ -92,16 +94,16 @@
 .login-header h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: hsl(215, 98%, 61%);
+  color: hsl(217, 91%, 60%);
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, hsl(215, 98%, 61%), hsl(215, 84%, 67%));
+  background: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(221, 83%, 53%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .login-container.dark .login-header h1 {
-  background: linear-gradient(135deg, hsl(215, 98%, 71%), hsl(215, 84%, 77%));
+  background: linear-gradient(135deg, hsl(217, 91%, 70%), hsl(221, 83%, 63%));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -144,7 +146,7 @@
 }
 
 .form-field input:focus {
-  border-color: hsl(215, 98%, 61%);
+  border-color: hsl(217, 91%, 60%);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
   background: rgba(255, 255, 255, 1);
 }
@@ -174,7 +176,7 @@
   top: 0;
   left: 0.75rem;
   font-size: 0.75rem;
-  color: hsl(215, 98%, 61%);
+  color: hsl(217, 91%, 60%);
   background: rgba(255, 255, 255, 1);
   padding: 0 0.5rem;
 }
@@ -224,7 +226,7 @@
 }
 
 .toggle-password:hover {
-  color: hsl(215, 98%, 61%);
+  color: hsl(217, 91%, 60%);
   transform: translateY(-50%) scale(1.1);
 }
 
@@ -266,8 +268,8 @@
 }
 
 .remember-me input[type="checkbox"]:checked + .checkmark {
-  background: hsl(215, 98%, 61%);
-  border-color: hsl(215, 98%, 61%);
+  background: hsl(217, 91%, 60%);
+  border-color: hsl(217, 91%, 60%);
 }
 
 .remember-me input[type="checkbox"]:checked + .checkmark::after {
@@ -281,19 +283,19 @@
 }
 
 .forgot-password {
-  color: hsl(215, 98%, 61%);
+  color: hsl(217, 91%, 60%);
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
 .forgot-password:hover {
-  color: hsl(215, 84%, 67%);
+  color: hsl(221, 83%, 53%);
   text-decoration: underline;
 }
 
 .login-button {
   width: 100%;
-  background: linear-gradient(135deg, hsl(215, 98%, 61%), hsl(215, 84%, 67%));
+  background: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(221, 83%, 53%));
   color: white;
   border: none;
   padding: 1rem;
@@ -323,7 +325,7 @@
 }
 
 .form-success .login-button {
-  background: linear-gradient(135deg, hsl(142, 76%, 36%), hsl(142, 69%, 45%));
+  background: linear-gradient(135deg, hsl(160, 84%, 39%), hsl(158, 64%, 52%));
 }
 
 .separator {
@@ -421,14 +423,14 @@
 }
 
 .signup-prompt a {
-  color: hsl(215, 98%, 61%);
+  color: hsl(217, 91%, 60%);
   text-decoration: none;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
 .signup-prompt a:hover {
-  color: hsl(215, 84%, 67%);
+  color: hsl(221, 83%, 53%);
   text-decoration: underline;
 }
 
