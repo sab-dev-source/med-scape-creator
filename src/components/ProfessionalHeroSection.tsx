@@ -1,32 +1,76 @@
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Upload, Search, Mic, ArrowRight, Sparkles } from "lucide-react";
 import { WavyBackground } from "@/components/ui/wavy-background";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+
 const ProfessionalHeroSection = () => {
-  return <WavyBackground containerClassName="min-h-screen flex items-center justify-center" colors={["#38bdf8",
-  // sky-400
-  "#818cf8",
-  // indigo-400
-  "#c084fc",
-  // purple-400
-  "#e879f9",
-  // fuchsia-400
-  "#22d3ee" // cyan-400
-  ]} waveWidth={50} backgroundFill="#0f172a" // slate-900
-  speed="slow" blur={10} waveOpacity={0.5}>
+  const successfulUsers = [
+    {
+      id: 1,
+      name: "Sarah Chen",
+      designation: "Senior Developer",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612c0e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      id: 2,
+      name: "Michael Rodriguez",
+      designation: "Product Manager",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+    },
+    {
+      id: 3,
+      name: "Lisa Wang",
+      designation: "UX Designer",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    },
+    {
+      id: 4,
+      name: "James Johnson",
+      designation: "Data Scientist",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80",
+    },
+    {
+      id: 5,
+      name: "Emily Davis",
+      designation: "Marketing Director",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60",
+    },
+    {
+      id: 6,
+      name: "David Kim",
+      designation: "Tech Lead",
+      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80",
+    },
+  ];
+
+  return (
+    <WavyBackground 
+      containerClassName="min-h-screen flex items-center justify-center" 
+      colors={[
+        "#38bdf8", // sky-400
+        "#818cf8", // indigo-400
+        "#c084fc", // purple-400
+        "#e879f9", // fuchsia-400
+        "#22d3ee"  // cyan-400
+      ]} 
+      waveWidth={50} 
+      backgroundFill="#0f172a" // slate-900
+      speed="slow" 
+      blur={10} 
+      waveOpacity={0.5}
+    >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center space-y-8">
           {/* Badge */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.6
-        }} className="flex justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }} 
+            className="flex justify-center"
+          >
             <div className="bg-white/10 backdrop-blur-md rounded-full px-6 py-3 flex items-center space-x-2 border border-white/20">
               <Sparkles className="w-5 h-5 text-white" />
               <span className="text-sm font-semibold text-white">
@@ -36,16 +80,12 @@ const ProfessionalHeroSection = () => {
           </motion.div>
 
           {/* Main headline */}
-          <motion.h1 initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
-        }} className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.2 }} 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight"
+          >
             Find Your Perfect Career with{" "}
             <span className="bg-gradient-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
               AI-Powered
@@ -54,31 +94,23 @@ const ProfessionalHeroSection = () => {
           </motion.h1>
 
           {/* Subtitle */}
-          <motion.p initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.4
-        }} className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.4 }} 
+            className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+          >
             Connect with opportunities across all industries. Upload your profile, 
             let our advanced AI find perfect matches, and apply with voice assistance.
           </motion.p>
 
           {/* CTA Buttons */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.6
-        }} className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.6 }} 
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
+          >
             <Link to="/upload-resume">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-xl rounded-xl min-w-[240px] h-14 transition-all duration-300 hover:scale-105">
                 <Upload className="w-5 h-5 mr-2" />
@@ -94,21 +126,24 @@ const ProfessionalHeroSection = () => {
             </Link>
           </motion.div>
 
-          {/* Voice Assistant Highlight - Better positioned and styled */}
-          <motion.div initial={{
-          opacity: 0,
-          y: 30
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.8
-        }} className="pt-16 max-w-4xl mx-auto">
-            
+          {/* Animated Tooltip Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.8, delay: 0.8 }} 
+            className="pt-12 max-w-4xl mx-auto"
+          >
+            <div className="text-center mb-6">
+              <p className="text-white/80 text-lg mb-4">
+                Join thousands of professionals who found their dream careers
+              </p>
+              <AnimatedTooltip items={successfulUsers} />
+            </div>
           </motion.div>
         </div>
       </div>
-    </WavyBackground>;
+    </WavyBackground>
+  );
 };
+
 export default ProfessionalHeroSection;
