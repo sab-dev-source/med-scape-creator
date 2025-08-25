@@ -8,7 +8,7 @@ import { WavyBackground } from "@/components/ui/wavy-background";
 const ProfessionalHeroSection = () => {
   return (
     <WavyBackground 
-      containerClassName="min-h-screen flex items-center justify-center" 
+      containerClassName="min-h-screen flex items-start justify-center pt-32" 
       colors={[
         "#38bdf8", // sky-400
         "#818cf8", // indigo-400
@@ -22,7 +22,7 @@ const ProfessionalHeroSection = () => {
       blur={10} 
       waveOpacity={0.5}
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center space-y-8">
           {/* Badge */}
           <motion.div 
