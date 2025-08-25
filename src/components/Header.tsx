@@ -89,7 +89,7 @@ const Header = () => {
       <motion.header 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm' 
+            ? 'bg-white/95 backdrop-blur-xl border-b border-slate-200/50 shadow-sm' 
             : 'bg-transparent'
         }`}
         initial={{ y: -100 }} 
@@ -101,18 +101,24 @@ const Header = () => {
             {/* Logo - Left Side */}
             <Link to="/" className="flex items-center space-x-3 z-50 flex-shrink-0">
               <motion.div
-                className="h-12 w-auto sm:h-14 md:h-16 flex items-center"
+                className="h-10 w-auto sm:h-12 md:h-14 flex items-center"
                 whileHover={{ scale: 1.05 }} 
                 transition={{ duration: 0.2 }}
               >
                 <img 
                   src="/lovable-uploads/1180c983-b41e-4fcf-891e-610f753c9d80.png" 
                   alt="BlueBridge Corporation" 
-                  className="h-full w-auto object-contain"
+                  className="h-full w-auto object-contain max-w-[120px] sm:max-w-[140px] md:max-w-[160px]"
+                  style={{ 
+                    imageRendering: 'auto',
+                    WebkitImageSmoothing: true,
+                    MozImageRendering: 'auto'
+                  }}
                   onError={(e) => {
                     console.error('Logo failed to load:', e);
+                    // Fallback to text logo
                     const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
+                    target.outerHTML = '<div class="text-2xl font-bold text-blue-600">BlueBridge</div>';
                   }}
                   onLoad={() => console.log('Logo loaded successfully')}
                 />
@@ -120,7 +126,7 @@ const Header = () => {
             </Link>
 
             {/* Desktop GooeyNav - Centered */}
-            <div className="hidden lg:flex flex-1 justify-center px-8">
+            <div className="hidden lg:flex flex-1 justify-center px-8 max-w-2xl">
               <GooeyNav items={gooeyNavItems} />
             </div>
 
@@ -149,6 +155,11 @@ const Header = () => {
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </motion.div>
             </Button>
+
+            {/* Fallback text logo if image fails */}
+            <noscript>
+              <div className="text-2xl font-bold text-blue-600">BlueBridge</div>
+            </noscript>
           </div>
         </div>
       </motion.header>
