@@ -99,23 +99,33 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo - Left Side */}
-            <Link to="/" className="flex items-center space-x-3 z-50">
-              <motion.img 
-                src="/lovable-uploads/1180c983-b41e-4fcf-891e-610f753c9d80.png" 
-                alt="BlueBridge Corporation" 
-                className="h-12 w-auto sm:h-14 md:h-16" 
+            <Link to="/" className="flex items-center space-x-3 z-50 flex-shrink-0">
+              <motion.div
+                className="h-12 w-auto sm:h-14 md:h-16 flex items-center"
                 whileHover={{ scale: 1.05 }} 
-                transition={{ duration: 0.2 }} 
-              />
+                transition={{ duration: 0.2 }}
+              >
+                <img 
+                  src="/lovable-uploads/1180c983-b41e-4fcf-891e-610f753c9d80.png" 
+                  alt="BlueBridge Corporation" 
+                  className="h-full w-auto object-contain"
+                  onError={(e) => {
+                    console.error('Logo failed to load:', e);
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                  onLoad={() => console.log('Logo loaded successfully')}
+                />
+              </motion.div>
             </Link>
 
-            {/* Desktop GooeyNav - Hidden on mobile */}
-            <div className="hidden lg:flex flex-1 justify-center">
+            {/* Desktop GooeyNav - Centered */}
+            <div className="hidden lg:flex flex-1 justify-center px-8">
               <GooeyNav items={gooeyNavItems} />
             </div>
 
             {/* Get Started Button - Desktop */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:block flex-shrink-0">
               <Link to="/login">
                 <Button 
                   className="h-12 px-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/25 transition-all duration-200"
@@ -130,7 +140,7 @@ const Header = () => {
               variant="ghost" 
               size="sm" 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-              className="lg:hidden h-12 w-12 p-0 text-slate-600 hover:text-slate-900 hover:bg-slate-100 relative z-50 rounded-lg"
+              className="lg:hidden h-12 w-12 p-0 text-slate-600 hover:text-slate-900 hover:bg-slate-100 relative z-50 rounded-lg flex-shrink-0"
             >
               <motion.div
                 animate={mobileMenuOpen ? { rotate: 90 } : { rotate: 0 }}
