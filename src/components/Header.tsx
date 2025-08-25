@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { getUserRole } from "@/services/userservice/auth"; 
 import { motion, AnimatePresence } from "framer-motion";
@@ -68,12 +69,17 @@ const Header = () => {
     { title: "Settings", url: "/client/settings" },
   ];
 
-  // Navigation items for GooeyNav
+  // Navigation items for GooeyNav with dropdown for Profile
   const gooeyNavItems = [
     { label: "Home", href: "/" },
     { label: "Jobs", href: "/jobs" },
     { label: "Voice Bot", href: "/voice-bot" },
-    { label: "Profile", href: role === "company" ? "/client/dashboard" : "/profile" },
+    { 
+      label: "Profile", 
+      href: role === "company" ? "/client/dashboard" : "/profile",
+      hasDropdown: true,
+      dropdownItems: role === "company" ? employerItems : profileItems
+    },
   ];
 
   const isActive = (path: string) => location.pathname === path;
