@@ -15,7 +15,7 @@ const AdminLayout = () => {
       <div className="flex-1 flex flex-col">
         <AdminTopBar />
         <motion.main 
-          className="flex-1 p-6"
+          className="flex-1 p-6 pt-24 sm:pt-28"
           initial={{ opacity: 0, x: 10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}

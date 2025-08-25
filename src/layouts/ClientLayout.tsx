@@ -18,7 +18,7 @@ const ClientLayout = () => {
           initial={{ opacity: 0, x: 10 }} 
           animate={{ opacity: 1, x: 0 }} 
           transition={{ duration: 0.3 }} 
-          className="flex-1 p-6 bg-slate-50"
+          className="flex-1 p-6 bg-slate-50 pt-24 sm:pt-28"
         >
           <PageTransition>
             <Outlet />
