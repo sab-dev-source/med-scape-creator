@@ -29,15 +29,17 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
     setActiveIndex(index);
   };
 
-  // Calculate the position for the animated blob
+  // Calculate the position for the animated blob - fixed calculation
   const getIndicatorPosition = () => {
     const targetIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
-    return targetIndex * 150 + 8; // 150px per item width + 8px offset
+    const itemWidth = 150; // Match the min-w-[150px] from the Link component
+    const startOffset = 8; // Initial offset
+    return targetIndex * itemWidth + startOffset;
   };
 
   return (
     <nav className="relative flex items-center justify-center">
-      <div className="relative flex items-center justify-center p-2 rounded-full bg-slate-900/20 backdrop-blur-xl border border-white/10 shadow-2xl">
+      <div className="relative flex items-center justify-center p-2 rounded-full bg-slate-900/10 backdrop-blur-xl border border-white/20 shadow-2xl">
         {/* Main animated background indicator */}
         <motion.div
           className="absolute rounded-full z-0"
@@ -59,14 +61,14 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
           }}
         />
         
-        {/* Gooey hover effect */}
+        {/* Enhanced gooey hover effect */}
         <AnimatePresence>
           {hoveredIndex !== null && (
             <motion.div
               className="absolute rounded-full z-0"
               style={{
-                background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 80%)',
-                filter: 'blur(10px)',
+                background: 'radial-gradient(ellipse at center, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 80%)',
+                filter: 'blur(8px)',
               }}
               initial={{ 
                 x: getIndicatorPosition(),
@@ -77,8 +79,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
               }}
               animate={{ 
                 x: getIndicatorPosition(),
-                width: 170,
-                height: 80,
+                width: 160,
+                height: 70,
                 scale: 1,
                 opacity: 1
               }}
@@ -112,12 +114,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
               <motion.span
                 className={`relative z-10 transition-all duration-300 ${
                   isTargeted
-                    ? 'text-white drop-shadow-sm font-semibold'
-                    : 'text-slate-300 hover:text-slate-100'
+                    ? 'text-white drop-shadow-lg font-bold' 
+                    : 'text-slate-700 hover:text-slate-900 font-medium'
                 }`}
                 animate={{
                   scale: isTargeted ? 1.05 : 1,
-                  fontWeight: isTargeted ? 600 : 500,
+                  fontWeight: isTargeted ? 700 : 500,
                 }}
                 transition={{ 
                   duration: 0.2,
@@ -127,14 +129,14 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
                 {item.label}
               </motion.span>
               
-              {/* Particle effects on hover */}
+              {/* Subtle particle effects on hover */}
               <AnimatePresence>
                 {isHovered && !isActive && (
                   <>
-                    {[...Array(4)].map((_, i) => (
+                    {[...Array(3)].map((_, i) => (
                       <motion.div
                         key={i}
-                        className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-70"
+                        className="absolute w-1 h-1 bg-blue-300 rounded-full opacity-60"
                         initial={{ 
                           scale: 0,
                           x: 0,
@@ -143,16 +145,16 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
                         }}
                         animate={{ 
                           scale: [0, 1, 0],
-                          x: [0, (i - 1.5) * 15, (i - 1.5) * 25],
-                          y: [0, -8 - i * 3, -15 - i * 5],
-                          opacity: [0, 0.8, 0]
+                          x: [0, (i - 1) * 12, (i - 1) * 20],
+                          y: [0, -6 - i * 2, -12 - i * 3],
+                          opacity: [0, 0.6, 0]
                         }}
                         transition={{
-                          duration: 1,
+                          duration: 0.8,
                           delay: i * 0.1,
                           ease: "easeOut",
                           repeat: Infinity,
-                          repeatDelay: 0.8
+                          repeatDelay: 1.2
                         }}
                       />
                     ))}
@@ -163,17 +165,6 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
           );
         })}
       </div>
-      
-      {/* SVG Filter for enhanced gooey effect */}
-      <svg className="absolute opacity-0 pointer-events-none" width="0" height="0">
-        <defs>
-          <filter id="gooey-enhanced" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
-            <feBlend in="SourceGraphic" in2="goo" />
-          </filter>
-        </defs>
-      </svg>
     </nav>
   );
 };
