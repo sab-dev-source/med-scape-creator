@@ -1,453 +1,353 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ... keep existing code (existing CSS) */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 84% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 17% 95%;
+    --secondary-foreground: 222 84% 5%;
+    --muted: 215 14% 97%;
+    --muted-foreground: 217 15% 55%;
+    --accent: 200 98% 39%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 15% 91%;
+    --input: 214 15% 91%;
+    --ring: 217 91% 60%;
+    --radius: 0.75rem;
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 20 14% 4%;
+    --coral: 351 83% 61%;
+    --coral-foreground: 0 0% 100%;
+    --purple: 263 70% 50%;
+    --purple-foreground: 0 0% 100%;
+  }
 
-/* Animated Sign-In Component Styles */
-.login-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(221, 83%, 53%) 100%);
+  .dark {
+    --background: 222 84% 5%;
+    --foreground: 210 17% 98%;
+    --card: 215 25% 27%;
+    --card-foreground: 210 17% 98%;
+    --popover: 215 25% 27%;
+    --popover-foreground: 210 17% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 84% 5%;
+    --secondary: 215 19% 35%;
+    --secondary-foreground: 210 17% 98%;
+    --muted: 215 19% 35%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 200 98% 39%;
+    --accent-foreground: 222 84% 5%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 17% 98%;
+    --border: 215 19% 35%;
+    --input: 215 19% 35%;
+    --ring: 217 91% 60%;
+  }
 }
 
-.login-container.dark {
-  background: linear-gradient(135deg, hsl(215, 28%, 17%) 0%, hsl(215, 20%, 25%) 100%);
-}
-
-.particles-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.theme-toggle {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: white;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.theme-toggle:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-}
-
-.login-card {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 400px;
-  z-index: 5;
-  perspective: 1000px;
-}
-
-.login-card-inner {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  transform-style: preserve-3d;
-}
-
-.login-container.dark .login-card-inner {
-  background: rgba(30, 41, 59, 0.95);
-  border: 1px solid rgba(71, 85, 105, 0.3);
-  color: white;
-}
-
-.login-card:hover .login-card-inner {
-  transform: rotateY(2deg) rotateX(2deg);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-}
-
-.login-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.login-header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: hsl(217, 91%, 60%);
-  margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(221, 83%, 53%));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.login-container.dark .login-header h1 {
-  background: linear-gradient(135deg, hsl(217, 91%, 70%), hsl(221, 83%, 63%));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.login-header p {
-  color: hsl(215, 16%, 47%);
-  font-size: 0.95rem;
-}
-
-.login-container.dark .login-header p {
-  color: hsl(215, 16%, 65%);
-}
-
-.login-form {
-  margin-bottom: 1.5rem;
-}
-
-.form-field {
-  position: relative;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.form-field input {
-  width: 100%;
-  padding: 1rem 1rem 1rem 1rem;
-  border: 2px solid rgba(203, 213, 225, 0.5);
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.8);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.login-container.dark .form-field input {
-  background: rgba(51, 65, 85, 0.8);
-  border-color: rgba(71, 85, 105, 0.5);
-  color: white;
-}
-
-.form-field input:focus {
-  border-color: hsl(217, 91%, 60%);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-  background: rgba(255, 255, 255, 1);
-}
-
-.login-container.dark .form-field input:focus {
-  background: rgba(51, 65, 85, 1);
-}
-
-.form-field label {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  color: hsl(215, 16%, 47%);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  pointer-events: none;
-}
-
-.login-container.dark .form-field label {
-  color: hsl(215, 16%, 65%);
-}
-
-.form-field.active label,
-.form-field input:focus + label {
-  top: 0;
-  left: 0.75rem;
-  font-size: 0.75rem;
-  color: hsl(217, 91%, 60%);
-  background: rgba(255, 255, 255, 1);
-  padding: 0 0.5rem;
-}
-
-.login-container.dark .form-field.active label,
-.login-container.dark .form-field input:focus + label {
-  background: rgba(30, 41, 59, 1);
-}
-
-.form-field.invalid input {
-  border-color: hsl(0, 84%, 60%);
-}
-
-.form-field.invalid input:focus {
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
-}
-
-.error-message {
-  position: absolute;
-  bottom: -1.25rem;
-  left: 0;
-  color: hsl(0, 84%, 60%);
-  font-size: 0.75rem;
-  animation: shake 0.3s ease-in-out;
-}
-
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
-}
-
-.toggle-password {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: hsl(215, 16%, 47%);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.login-container.dark .toggle-password {
-  color: hsl(215, 16%, 65%);
-}
-
-.toggle-password:hover {
-  color: hsl(217, 91%, 60%);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.form-options {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-  font-size: 0.9rem;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: hsl(215, 16%, 47%);
-}
-
-.login-container.dark .remember-me {
-  color: hsl(215, 16%, 65%);
-}
-
-.remember-me input[type="checkbox"] {
-  display: none;
-}
-
-.checkmark {
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid rgba(203, 213, 225, 0.5);
-  border-radius: 0.25rem;
-  margin-right: 0.5rem;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.login-container.dark .checkmark {
-  border-color: rgba(71, 85, 105, 0.5);
-}
-
-.remember-me input[type="checkbox"]:checked + .checkmark {
-  background: hsl(217, 91%, 60%);
-  border-color: hsl(217, 91%, 60%);
-}
-
-.remember-me input[type="checkbox"]:checked + .checkmark::after {
-  content: "✓";
-  position: absolute;
-  color: white;
-  font-size: 0.75rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.forgot-password {
-  color: hsl(217, 91%, 60%);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.forgot-password:hover {
-  color: hsl(221, 83%, 53%);
-  text-decoration: underline;
-}
-
-.login-button {
-  width: 100%;
-  background: linear-gradient(135deg, hsl(217, 91%, 60%), hsl(221, 83%, 53%));
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.login-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-}
-
-.login-button:active {
-  transform: translateY(0);
-}
-
-.login-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
-
-.form-success .login-button {
-  background: linear-gradient(135deg, hsl(160, 84%, 39%), hsl(158, 64%, 52%));
-}
-
-.separator {
-  text-align: center;
-  margin: 1.5rem 0;
-  position: relative;
-  color: hsl(215, 16%, 47%);
-  font-size: 0.9rem;
-}
-
-.login-container.dark .separator {
-  color: hsl(215, 16%, 65%);
-}
-
-.separator::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(203, 213, 225, 0.5);
-}
-
-.login-container.dark .separator::before {
-  background: rgba(71, 85, 105, 0.5);
-}
-
-.separator span {
-  background: rgba(255, 255, 255, 0.95);
-  padding: 0 1rem;
-}
-
-.login-container.dark .separator span {
-  background: rgba(30, 41, 59, 0.95);
-}
-
-.social-login {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.social-button {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 2px solid rgba(203, 213, 225, 0.5);
-  background: rgba(255, 255, 255, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.login-container.dark .social-button {
-  background: rgba(51, 65, 85, 0.8);
-  border-color: rgba(71, 85, 105, 0.5);
-  color: white;
-}
-
-.social-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.social-button.github:hover {
-  background: #333;
-  color: white;
-  border-color: #333;
-}
-
-.social-button.twitter:hover {
-  background: #1da1f2;
-  color: white;
-  border-color: #1da1f2;
-}
-
-.social-button.linkedin:hover {
-  background: #0077b5;
-  color: white;
-  border-color: #0077b5;
-}
-
-.signup-prompt {
-  text-align: center;
-  color: hsl(215, 16%, 47%);
-  font-size: 0.9rem;
-}
-
-.login-container.dark .signup-prompt {
-  color: hsl(215, 16%, 65%);
-}
-
-.signup-prompt a {
-  color: hsl(217, 91%, 60%);
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.signup-prompt a:hover {
-  color: hsl(221, 83%, 53%);
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 640px) {
-  .login-card {
-    width: 95%;
+@layer base {
+  * {
+    @apply border-border;
   }
   
-  .login-card-inner {
-    padding: 2rem;
+  html {
+    scroll-behavior: smooth;
+    background-color: white !important;
   }
   
-  .theme-toggle {
-    top: 1rem;
-    right: 1rem;
-    width: 2.5rem;
-    height: 2.5rem;
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    font-variation-settings: 'opsz' 32;
+    background-color: transparent !important;
+  }
+  
+  /* Force all page elements to use proper theming */
+  html, body, #root, .page-container, .layout-container {
+    background-color: transparent !important;
+  }
+  
+  /* Enhanced focus management */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+  
+  /* Smooth transitions for all interactive elements */
+  button, a, input, textarea, select {
+    @apply transition-all duration-200 ease-out;
+  }
+}
+
+@layer components {
+  /* Glass morphism effects */
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-glass;
+  }
+  
+  .glass-card-dark {
+    @apply bg-black/10 backdrop-blur-md border border-white/10 shadow-glass;
+  }
+  
+  /* Modern gradient backgrounds - using direct background-image instead of @apply to avoid circular dependency */
+  .bg-gradient-primary {
+    background-image: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(221, 83%, 53%) 50%, hsl(224, 76%, 48%) 100%);
+  }
+
+  .bg-gradient-primary-soft {
+    background-image: linear-gradient(135deg, hsl(214, 100%, 97%) 0%, hsl(214, 95%, 93%) 50%, hsl(213, 97%, 87%) 100%);
+  }
+
+  .bg-gradient-accent {
+    background-image: linear-gradient(135deg, hsl(200, 98%, 39%) 0%, hsl(201, 96%, 32%) 50%, hsl(201, 90%, 27%) 100%);
+  }
+
+  .bg-gradient-mesh {
+    background-image: radial-gradient(at 40% 20%, hsl(217, 91%, 60%) 0px, transparent 50%), radial-gradient(at 80% 0%, hsl(200, 98%, 39%) 0px, transparent 50%), radial-gradient(at 0% 50%, hsl(263, 70%, 50%) 0px, transparent 50%), radial-gradient(at 80% 50%, hsl(351, 83%, 61%) 0px, transparent 50%), radial-gradient(at 0% 100%, hsl(160, 84%, 39%) 0px, transparent 50%), radial-gradient(at 80% 100%, hsl(43, 96%, 56%) 0px, transparent 50%), radial-gradient(at 0% 0%, hsl(263, 70%, 50%) 0px, transparent 50%);
+  }
+
+  /* Enhanced card components */
+  .modern-card {
+    @apply bg-white/95 backdrop-blur-sm border border-border rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .premium-card {
+    @apply bg-white/95 backdrop-blur-xl border border-white/20 rounded-2xl shadow-premium hover:shadow-glass transition-all duration-300 hover:-translate-y-2;
+  }
+
+  .neumorphic-card {
+    @apply bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-neumorphism border border-gray-100/50;
+  }
+
+  /* Modern button styles */
+  .btn-modern {
+    @apply inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn-modern text-primary-foreground hover:opacity-90 hover:scale-105 shadow-primary-soft hover:shadow-primary-glow;
+    background-image: linear-gradient(135deg, hsl(217, 91%, 60%) 0%, hsl(221, 83%, 53%) 50%, hsl(224, 76%, 48%) 100%);
+  }
+
+  .btn-secondary {
+    @apply btn-modern bg-white text-secondary-foreground hover:bg-secondary border border-border hover:border-primary/20 shadow-card hover:shadow-card-hover;
+  }
+
+  .btn-accent {
+    @apply btn-modern text-accent-foreground hover:opacity-90 hover:scale-105 shadow-accent-soft hover:shadow-accent-glow;
+    background-image: linear-gradient(135deg, hsl(200, 98%, 39%) 0%, hsl(201, 96%, 32%) 50%, hsl(201, 90%, 27%) 100%);
+  }
+
+  .btn-success {
+    @apply btn-modern text-success-foreground hover:opacity-90 hover:scale-105 shadow-success-soft;
+    background-image: linear-gradient(135deg, hsl(160, 84%, 39%) 0%, hsl(158, 64%, 52%) 50%, hsl(158, 75%, 42%) 100%);
+  }
+
+  .btn-coral {
+    @apply btn-modern text-coral-foreground hover:opacity-90 hover:scale-105 shadow-coral-soft;
+    background-image: linear-gradient(135deg, hsl(351, 83%, 61%) 0%, hsl(347, 77%, 50%) 50%, hsl(343, 75%, 42%) 100%);
+  }
+
+  .btn-ghost {
+    @apply btn-modern hover:bg-primary/10 hover:text-primary text-muted-foreground;
+  }
+
+  /* Enhanced form inputs */
+  .input-modern {
+    @apply flex h-12 w-full rounded-xl border border-border bg-white/80 backdrop-blur-sm px-4 py-3 text-sm transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 hover:border-primary/50 focus:bg-white;
+  }
+
+  /* Status badges with modern styling */
+  .status-badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ring-inset;
+  }
+
+  .status-active {
+    @apply status-badge bg-success/10 text-success ring-success/20;
+  }
+
+  .status-pending {
+    @apply status-badge bg-warning/10 text-warning ring-warning/20;
+  }
+
+  .status-inactive {
+    @apply status-badge bg-muted text-muted-foreground ring-border;
+  }
+
+  .status-tech {
+    @apply status-badge bg-primary/10 text-primary ring-primary/20;
+  }
+
+  .status-design {
+    @apply status-badge bg-purple/10 text-purple ring-purple/20;
+  }
+
+  .status-sales {
+    @apply status-badge bg-success/10 text-success ring-success/20;
+  }
+
+  .status-marketing {
+    @apply status-badge bg-coral/10 text-coral ring-coral/20;
+  }
+
+  /* Text gradient utilities */
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .text-gradient-success {
+    @apply bg-gradient-to-r from-success to-accent bg-clip-text text-transparent;
+  }
+
+  .text-gradient-coral {
+    @apply bg-gradient-to-r from-coral to-purple bg-clip-text text-transparent;
+  }
+
+  /* Modern section styling */
+  .section-modern {
+    @apply py-20 lg:py-24;
+  }
+
+  .container-modern {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Enhanced navigation */
+  .nav-modern {
+    @apply bg-white/95 backdrop-blur-md border-b border-border shadow-sm;
+  }
+
+  .nav-link {
+    @apply inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-primary/10 hover:text-primary;
+  }
+
+  .nav-link-active {
+    @apply nav-link bg-primary/10 text-primary;
+  }
+
+  /* Animated elements */
+  .animate-float {
+    @apply animate-float;
+  }
+
+  .animate-gradient {
+    @apply animate-gradient-shift bg-gradient-to-r bg-[length:200%_200%];
+  }
+
+  /* Interactive hover effects */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-card-hover;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-primary-glow;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-200 hover:scale-105;
+  }
+
+  /* Modern loading states */
+  .skeleton {
+    @apply animate-pulse bg-gradient-to-r from-muted via-muted/80 to-muted rounded;
+  }
+
+  .shimmer {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-muted-foreground/10 before:to-transparent;
+  }
+
+  /* Enhanced typography */
+  .text-hero {
+    @apply text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+  }
+
+  .text-section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+
+  .text-card-title {
+    @apply text-xl md:text-2xl font-semibold tracking-tight;
+  }
+
+  /* Modern spacing utilities */
+  .space-section {
+    @apply space-y-16 lg:space-y-20;
+  }
+
+  .space-content {
+    @apply space-y-8 lg:space-y-12;
+  }
+
+  /* Color-coded industry themes */
+  .theme-tech {
+    @apply text-primary bg-primary/5 border-primary/20;
+  }
+
+  .theme-design {
+    @apply text-purple bg-purple/5 border-purple/20;
+  }
+
+  .theme-sales {
+    @apply text-success bg-success/5 border-success/20;
+  }
+
+  .theme-marketing {
+    @apply text-coral bg-coral/5 border-coral/20;
+  }
+
+  .theme-finance {
+    @apply text-accent bg-accent/5 border-accent/20;
+  }
+
+  /* Advanced glassmorphism utilities */
+  .glass-primary {
+    @apply bg-primary/10 backdrop-blur-md border border-primary/20 shadow-primary-soft;
+  }
+
+  .glass-accent {
+    @apply bg-accent/10 backdrop-blur-md border border-accent/20 shadow-accent-soft;
+  }
+
+  .glass-success {
+    @apply bg-success/10 backdrop-blur-md border border-success/20 shadow-success-soft;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/30 rounded-full hover:bg-primary/50;
+}
+
+/* Selection styling */
+::selection {
+  @apply bg-primary/20 text-primary;
+}
+
+/* Print optimizations */
+@media print {
+  .no-print {
+    display: none !important;
   }
 }
