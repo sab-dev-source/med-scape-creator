@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -72,12 +71,25 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
     { title: "Notifications", url: "/profile/notifications" },
   ];
 
-  // Calculate blob position and width - only move when not dropdown is open
+  // Calculate blob position and width - don't move when dropdown is open
   const calculateBlobStyle = () => {
+    if (dropdownOpen) {
+      // Keep blob at active position when dropdown is open
+      const targetIndex = activeIndex;
+      const itemWidth = 104;
+      const itemSpacing = 8;
+      const containerPadding = 8;
+      
+      return {
+        x: containerPadding + (targetIndex * (itemWidth + itemSpacing)),
+        width: itemWidth
+      };
+    }
+    
     const targetIndex = hoveredIndex !== null ? hoveredIndex : activeIndex;
-    const itemWidth = 104; // min-w-[104px]
-    const itemSpacing = 8; // space-x-2
-    const containerPadding = 8; // p-2
+    const itemWidth = 104;
+    const itemSpacing = 8;
+    const containerPadding = 8;
     
     return {
       x: containerPadding + (targetIndex * (itemWidth + itemSpacing)),
@@ -90,7 +102,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
   return (
     <div className="flex justify-center w-full">
       <nav className="relative flex items-center justify-center" ref={navRef}>
-        <div className="relative flex items-center space-x-2 p-2 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/50 shadow-lg overflow-hidden">
+        <div className="relative flex items-center space-x-2 p-2 rounded-full bg-white/20 backdrop-blur-md border border-white/20 shadow-lg overflow-hidden">
           {/* Background indicator */}
           <motion.div
             className="absolute h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full shadow-md"
@@ -122,25 +134,19 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
                       <motion.span
                         className={`relative z-10 transition-colors duration-300 font-semibold ${
                           isHighlighted
-                            ? 'text-white'
-                            : 'text-slate-700 hover:text-slate-900'
+                            ? 'text-white drop-shadow-sm'
+                            : 'text-slate-800 hover:text-slate-900'
                         }`}
                         animate={{
                           scale: isHighlighted ? 1.05 : 1
                         }}
                         transition={{ duration: 0.2 }}
-                        style={{
-                          textShadow: isHighlighted ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
-                        }}
                       >
                         {item.label}
                       </motion.span>
                       <ChevronDown className={`w-3 h-3 transition-colors duration-300 ${
-                        isHighlighted ? 'text-white' : 'text-slate-600'
-                      }`}
-                      style={{
-                        filter: isHighlighted ? 'drop-shadow(0 1px 1px rgba(0,0,0,0.2))' : 'none'
-                      }} />
+                        isHighlighted ? 'text-white drop-shadow-sm' : 'text-slate-700'
+                      }`} />
                       
                       {/* Gooey hover effect */}
                       <AnimatePresence>
@@ -160,12 +166,12 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
                       </AnimatePresence>
                     </button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56 bg-white shadow-xl border border-slate-200 z-50 mt-2 rounded-lg">
+                  <DropdownMenuContent className="w-56 bg-white/95 backdrop-blur-md shadow-xl border border-white/20 z-50 mt-2 rounded-lg">
                     {profileItems.map((dropdownItem) => (
                       <DropdownMenuItem key={dropdownItem.title} asChild>
                         <Link 
                           to={dropdownItem.url}
-                          className="block px-4 py-3 text-sm hover:bg-slate-50 cursor-pointer text-slate-700 rounded-md transition-colors duration-200"
+                          className="block px-4 py-3 text-sm hover:bg-white/50 cursor-pointer text-slate-700 rounded-md transition-colors duration-200"
                           onClick={() => {
                             handleItemClick(index);
                             setDropdownOpen(false);
@@ -192,16 +198,13 @@ const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
                 <motion.span
                   className={`relative z-10 transition-colors duration-300 font-semibold ${
                     isHighlighted
-                      ? 'text-white'
-                      : 'text-slate-700 hover:text-slate-900'
+                      ? 'text-white drop-shadow-sm'
+                      : 'text-slate-800 hover:text-slate-900'
                   }`}
                   animate={{
                     scale: isHighlighted ? 1.05 : 1
                   }}
                   transition={{ duration: 0.2 }}
-                  style={{
-                    textShadow: isHighlighted ? '0 1px 2px rgba(0,0,0,0.2)' : 'none'
-                  }}
                 >
                   {item.label}
                 </motion.span>
