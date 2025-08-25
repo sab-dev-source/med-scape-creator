@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { getUserRole } from "@/services/userservice/auth"; 
 import { motion, AnimatePresence } from "framer-motion";
@@ -110,9 +109,7 @@ const Header = () => {
                   alt="BlueBridge Corporation" 
                   className="h-full w-auto object-contain max-w-[120px] sm:max-w-[140px] md:max-w-[160px]"
                   style={{ 
-                    imageRendering: 'auto',
-                    WebkitImageSmoothing: true,
-                    MozImageRendering: 'auto'
+                    imageRendering: 'auto'
                   }}
                   onError={(e) => {
                     console.error('Logo failed to load:', e);
