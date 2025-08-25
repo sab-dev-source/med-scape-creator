@@ -5,26 +5,26 @@ import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 const StatsSection = () => {
   const stats = [
     {
-      icon: Briefcase,
-      number: "15,000+",
-      label: "Active Job Listings",
+      icon: Users,
+      number: "150K+",
+      label: "Active Professionals",
       description: "Across all industries"
     },
     {
-      icon: Building,
-      number: "2,500+",
-      label: "Partner Companies",
+      icon: Briefcase,
+      number: "50K+",
+      label: "Job Opportunities",
       description: "From startups to Fortune 500"
     },
     {
-      icon: Users,
-      number: "50,000+",
-      label: "Professionals Matched",
+      icon: Building,
+      number: "5K+",
+      label: "Partner Companies",
       description: "Successfully placed"
     },
     {
       icon: TrendingUp,
-      number: "94%",
+      number: "98%",
       label: "Success Rate",
       description: "Job placement satisfaction"
     }
@@ -70,19 +70,19 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-20 bg-white/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             Trusted by Industry Leaders
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-600 mb-12">
             Join thousands of professionals and companies who've found success with BlueBridge
           </p>
           
-          {/* Animated Tooltip Section */}
-          <div className="mb-12">
-            <p className="text-gray-700 text-lg mb-6 font-medium">
+          {/* Animated Tooltip Section - Made more visible */}
+          <div className="mb-16 bg-gray-50 rounded-2xl py-12 px-8">
+            <p className="text-gray-800 text-lg mb-8 font-semibold">
               Meet some of the professionals who found their dream careers
             </p>
             <div className="flex justify-center">
@@ -91,7 +91,7 @@ const StatsSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <div key={index} className="text-center bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
               <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg mb-4">
