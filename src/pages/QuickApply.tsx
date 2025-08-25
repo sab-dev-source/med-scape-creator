@@ -192,7 +192,7 @@ const QuickApply = () => {
 
   if (currentStep > totalSteps) {
     return (
-      <div className="section-padding bg-gradient-mesh flex items-center justify-center min-h-screen">
+      <div className="min-h-screen bg-white flex items-center justify-center py-20">
         <ProfessionalCard variant="executive" className="max-w-md w-full">
           <CardContent className="p-8">
             {renderStep()}
@@ -203,8 +203,8 @@ const QuickApply = () => {
   }
 
   return (
-    <div className="section-padding bg-gradient-mesh">
-      <div className="max-w-4xl mx-auto container-padding">
+    <div className="min-h-screen bg-white pt-24 pb-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
@@ -212,10 +212,10 @@ const QuickApply = () => {
           transition={{ duration: 0.6 }}
         >
           <h1 className="text-4xl lg:text-5xl font-display font-bold text-gradient mb-6">
-            Quick Apply
+            Complete your application in just a few steps
           </h1>
           <p className="text-xl text-muted-foreground">
-            Complete your application in just a few steps
+            Fill out the information below to complete your application
           </p>
         </motion.div>
 
