@@ -54,58 +54,58 @@ const QuickApply = () => {
       case 1:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gradient">Personal Information</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Personal Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="firstName" className="text-sm font-medium">First Name</Label>
+                <Label htmlFor="firstName" className="text-sm font-medium text-slate-600">First Name</Label>
                 <Input
                   id="firstName"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange("firstName", e.target.value)}
                   placeholder="Enter your first name"
-                  className="professional-form-input"
+                  className="mt-1 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
               <div>
-                <Label htmlFor="lastName" className="text-sm font-medium">Last Name</Label>
+                <Label htmlFor="lastName" className="text-sm font-medium text-slate-600">Last Name</Label>
                 <Input
                   id="lastName"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange("lastName", e.target.value)}
                   placeholder="Enter your last name"
-                  className="professional-form-input"
+                  className="mt-1 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
                 />
               </div>
             </div>
             <div>
-              <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
+              <Label htmlFor="email" className="text-sm font-medium text-slate-600">Email Address</Label>
               <Input
                 id="email"
                 type="email"
                 value={formData.email}
                 onChange={(e) => handleInputChange("email", e.target.value)}
                 placeholder="Enter your email"
-                className="professional-form-input"
+                className="mt-1 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
             <div>
-              <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
+              <Label htmlFor="phone" className="text-sm font-medium text-slate-600">Phone Number</Label>
               <Input
                 id="phone"
                 value={formData.phone}
                 onChange={(e) => handleInputChange("phone", e.target.value)}
                 placeholder="Enter your phone number"
-                className="professional-form-input"
+                className="mt-1 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
             <div>
-              <Label htmlFor="location" className="text-sm font-medium">Current Location</Label>
+              <Label htmlFor="location" className="text-sm font-medium text-slate-600">Current Location</Label>
               <Input
                 id="location"
                 value={formData.location}
                 onChange={(e) => handleInputChange("location", e.target.value)}
                 placeholder="City, State"
-                className="professional-form-input"
+                className="mt-1 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -114,16 +114,16 @@ const QuickApply = () => {
       case 2:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gradient">Work Experience</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Work Experience</h3>
             <div>
-              <Label htmlFor="experience" className="text-sm font-medium">Tell us about your relevant experience</Label>
+              <Label htmlFor="experience" className="text-sm font-medium text-slate-600">Tell us about your relevant experience</Label>
               <Textarea
                 id="experience"
                 value={formData.experience}
                 onChange={(e) => handleInputChange("experience", e.target.value)}
                 placeholder="Describe your work experience, skills, and achievements..."
                 rows={6}
-                className="mt-2"
+                className="mt-2 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -132,16 +132,16 @@ const QuickApply = () => {
       case 3:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gradient">Cover Letter</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Cover Letter</h3>
             <div>
-              <Label htmlFor="coverLetter" className="text-sm font-medium">Why are you interested in this position?</Label>
+              <Label htmlFor="coverLetter" className="text-sm font-medium text-slate-600">Why are you interested in this position?</Label>
               <Textarea
                 id="coverLetter"
                 value={formData.coverLetter}
                 onChange={(e) => handleInputChange("coverLetter", e.target.value)}
                 placeholder="Write a brief cover letter explaining your interest and fit for this role..."
                 rows={6}
-                className="mt-2"
+                className="mt-2 bg-white border-slate-200 focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
           </div>
@@ -150,13 +150,13 @@ const QuickApply = () => {
       case 4:
         return (
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gradient">Review & Submit</h3>
-            <div className="bg-slate-50 p-6 rounded-xl space-y-3">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div><span className="font-medium">Name:</span> {formData.firstName} {formData.lastName}</div>
-                <div><span className="font-medium">Email:</span> {formData.email}</div>
-                <div><span className="font-medium">Phone:</span> {formData.phone}</div>
-                <div><span className="font-medium">Location:</span> {formData.location}</div>
+            <h3 className="text-xl font-semibold text-slate-900">Review & Submit</h3>
+            <div className="bg-slate-50 p-6 rounded-xl space-y-3 border border-slate-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div><span className="font-medium text-slate-600">Name:</span> <span className="text-slate-900">{formData.firstName} {formData.lastName}</span></div>
+                <div><span className="font-medium text-slate-600">Email:</span> <span className="text-slate-900">{formData.email}</span></div>
+                <div><span className="font-medium text-slate-600">Phone:</span> <span className="text-slate-900">{formData.phone}</span></div>
+                <div><span className="font-medium text-slate-600">Location:</span> <span className="text-slate-900">{formData.location}</span></div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
@@ -164,8 +164,9 @@ const QuickApply = () => {
                 id="terms"
                 checked={formData.agreeToTerms}
                 onCheckedChange={(checked) => handleInputChange("agreeToTerms", checked as boolean)}
+                className="border-slate-300 data-[state=checked]:bg-blue-600 data-[state=checked]:border-blue-600"
               />
-              <Label htmlFor="terms" className="text-sm">
+              <Label htmlFor="terms" className="text-sm text-slate-600">
                 I agree to the Terms of Service and Privacy Policy
               </Label>
             </div>
@@ -181,8 +182,8 @@ const QuickApply = () => {
             transition={{ duration: 0.5 }}
           >
             <CheckCircle className="w-20 h-20 text-blue-600 mx-auto" />
-            <h3 className="text-3xl font-semibold text-blue-800">Application Submitted!</h3>
-            <p className="text-muted-foreground text-lg">
+            <h3 className="text-3xl font-semibold text-slate-900">Application Submitted!</h3>
+            <p className="text-slate-600 text-lg">
               Thank you for your application. We'll review it and get back to you soon.
             </p>
           </motion.div>
@@ -192,29 +193,31 @@ const QuickApply = () => {
 
   if (currentStep > totalSteps) {
     return (
-      <div className="section-padding bg-gradient-mesh flex items-center justify-center min-h-screen">
-        <ProfessionalCard variant="executive" className="max-w-md w-full">
-          <CardContent className="p-8">
-            {renderStep()}
-          </CardContent>
-        </ProfessionalCard>
+      <div className="min-h-[calc(100vh-8rem)] bg-white flex items-center justify-center py-12">
+        <div className="max-w-md w-full mx-4">
+          <ProfessionalCard variant="executive" className="border border-slate-200 shadow-card">
+            <CardContent className="p-8">
+              {renderStep()}
+            </CardContent>
+          </ProfessionalCard>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="section-padding bg-gradient-mesh">
-      <div className="max-w-4xl mx-auto container-padding">
+    <div className="min-h-[calc(100vh-8rem)] bg-white">
+      <div className="max-w-4xl mx-auto px-4 py-12">
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl lg:text-5xl font-display font-bold text-gradient mb-6">
+          <h1 className="text-4xl lg:text-5xl font-display font-bold text-slate-900 mb-6">
             Quick Apply
           </h1>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-slate-600">
             Complete your application in just a few steps
           </p>
         </motion.div>
@@ -227,8 +230,8 @@ const QuickApply = () => {
           transition={{ delay: 0.3 }}
         >
           <div className="flex items-center justify-between mb-3">
-            <span className="text-sm font-medium text-muted-foreground">Step {currentStep} of {totalSteps}</span>
-            <span className="text-sm font-medium text-muted-foreground">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
+            <span className="text-sm font-medium text-slate-600">Step {currentStep} of {totalSteps}</span>
+            <span className="text-sm font-medium text-slate-600">{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
           </div>
           <div className="w-full bg-slate-200 rounded-full h-3">
             <motion.div 
@@ -240,30 +243,33 @@ const QuickApply = () => {
           </div>
         </motion.div>
 
-        <ProfessionalCard variant="executive" delay={0.5}>
-          <CardHeader>
-            <CardTitle className="text-2xl">Application Form</CardTitle>
-            <CardDescription className="text-base">
+        <ProfessionalCard variant="executive" delay={0.5} className="border border-slate-200 shadow-card">
+          <CardHeader className="border-b border-slate-200">
+            <CardTitle className="text-2xl text-slate-900">Application Form</CardTitle>
+            <CardDescription className="text-base text-slate-600">
               Fill out the information below to complete your application
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-6">
             {renderStep()}
             
             {currentStep <= totalSteps && (
-              <div className="flex justify-between mt-8 pt-6 border-t">
+              <div className="flex justify-between mt-8 pt-6 border-t border-slate-200">
                 <Button
                   variant="outline"
                   onClick={prevStep}
                   disabled={currentStep === 1}
-                  className="px-6"
+                  className="px-6 border-slate-300 text-slate-700 hover:bg-slate-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   <ChevronLeft className="w-4 h-4 mr-2" />
                   Previous
                 </Button>
                 
                 {currentStep < totalSteps ? (
-                  <Button onClick={nextStep} className="executive-button-primary px-6">
+                  <Button 
+                    onClick={nextStep} 
+                    className="px-6 bg-blue-600 hover:bg-blue-700 text-white focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
                     Next
                     <ChevronRight className="w-4 h-4 ml-2" />
                   </Button>
@@ -271,7 +277,7 @@ const QuickApply = () => {
                   <Button 
                     onClick={submitApplication}
                     disabled={!formData.agreeToTerms}
-                    className="executive-button-primary px-8"
+                    className="px-8 bg-blue-600 hover:bg-blue-700 text-white disabled:bg-slate-300 disabled:text-slate-500 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   >
                     Submit Application
                   </Button>
