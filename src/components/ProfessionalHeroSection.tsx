@@ -22,8 +22,8 @@ const ProfessionalHeroSection = () => {
       blur={10} 
       waveOpacity={0.5}
     >
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 -mt-20">
-        <div className="text-center space-y-6">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-16">
+        <div className="text-center space-y-8">
           {/* Badge */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
@@ -69,7 +69,7 @@ const ProfessionalHeroSection = () => {
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8, delay: 0.6 }} 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8"
           >
             <Link to="/upload-resume">
               <Button size="lg" className="bg-white text-slate-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold shadow-xl rounded-xl min-w-[240px] h-14 transition-all duration-300 hover:scale-105">
