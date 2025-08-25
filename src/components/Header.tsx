@@ -15,23 +15,35 @@ import GooeyNav from "./GooeyNav";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [role, setRole] = useState<string | null>(getUserRole());
+  const [isScrolled, setIsScrolled] = useState(false);
 
-// keep role in sync (same-tab + cross-tab)
-useEffect(() => {
-  const handleStorage = (e: StorageEvent) => {
-    if (e.key === "role") setRole(getUserRole());
-  };
-  const handleRoleChanged = () => setRole(getUserRole()); 
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  window.addEventListener("storage", handleStorage);
-  window.addEventListener("role-changed", handleRoleChanged as EventListener);
-  setRole(getUserRole());
+  // keep role in sync (same-tab + cross-tab)
+  useEffect(() => {
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === "role") setRole(getUserRole());
+    };
+    const handleRoleChanged = () => setRole(getUserRole()); 
 
-  return () => {
-    window.removeEventListener("storage", handleStorage);
-    window.removeEventListener("role-changed", handleRoleChanged as EventListener);
-  };
-}, []);
+    window.addEventListener("storage", handleStorage);
+    window.addEventListener("role-changed", handleRoleChanged as EventListener);
+    setRole(getUserRole());
+
+    return () => {
+      window.removeEventListener("storage", handleStorage);
+      window.removeEventListener("role-changed", handleRoleChanged as EventListener);
+    };
+  }, []);
+
   const location = useLocation();
   
   const navigationItems = [
@@ -69,7 +81,11 @@ useEffect(() => {
   return (
     <>
       <motion.header 
-        className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm" 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm' 
+            : 'bg-transparent'
+        }`}
         initial={{ y: -100 }} 
         animate={{ y: 0 }} 
         transition={{ duration: 0.4, ease: [0.25, 0.4, 0.55, 1.4] }}
@@ -81,7 +97,7 @@ useEffect(() => {
               <motion.img 
                 src="/lovable-uploads/1180c983-b41e-4fcf-891e-610f753c9d80.png" 
                 alt="BlueBridge Corporation" 
-                className="h-16 w-auto sm:h-18 md:h-20" 
+                className="h-12 w-auto sm:h-14 md:h-16" 
                 whileHover={{ scale: 1.05 }} 
                 transition={{ duration: 0.2 }} 
               />
@@ -89,16 +105,7 @@ useEffect(() => {
 
             {/* Desktop GooeyNav - Hidden on mobile */}
             <div className="hidden lg:flex flex-1 justify-center">
-              <GooeyNav
-                items={gooeyNavItems}
-                particleCount={15}
-                particleDistances={[90, 10]}
-                particleR={100}
-                initialActiveIndex={0}
-                animationTime={600}
-                timeVariance={300}
-                colors={[1, 2, 3, 1, 2, 3, 1, 4]}
-              />
+              <GooeyNav items={gooeyNavItems} />
             </div>
 
             {/* Get Started Button - Desktop */}
@@ -189,7 +196,6 @@ useEffect(() => {
                   <div className="space-y-3">
 
                     {((role ?? "").trim().toLowerCase() === "company") ? (
-                      // ===== Employers Portal Dropdown (UNCHANGED) =====
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -223,7 +229,6 @@ useEffect(() => {
                         </DropdownMenu>
                       </motion.div>
                     ) : (
-                      // ===== Profile Dropdown (UNCHANGED) =====
                       <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -258,7 +263,7 @@ useEffect(() => {
                       </motion.div>
                     )}
 
-                    {/* Get Started Button (UNCHANGED) */}
+                    {/* Get Started Button */}
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}

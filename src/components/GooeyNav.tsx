@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface GooeyNavItem {
   label: string;
@@ -9,30 +10,12 @@ interface GooeyNavItem {
 
 interface GooeyNavProps {
   items: GooeyNavItem[];
-  particleCount?: number;
-  particleDistances?: [number, number];
-  particleR?: number;
-  initialActiveIndex?: number;
-  animationTime?: number;
-  timeVariance?: number;
-  colors?: number[];
 }
 
-const GooeyNav: React.FC<GooeyNavProps> = ({
-  items,
-  particleCount = 15,
-  particleDistances = [90, 10],
-  particleR = 100,
-  initialActiveIndex = 0,
-  animationTime = 600,
-  timeVariance = 300,
-  colors = [1, 2, 3, 1, 2, 3, 1, 4]
-}) => {
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
-  const [particles, setParticles] = useState<any[]>([]);
+const GooeyNav: React.FC<GooeyNavProps> = ({ items }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const location = useLocation();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
 
   // Update active index based on current route
   useEffect(() => {
@@ -42,116 +25,70 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     }
   }, [location.pathname, items]);
 
-  // Initialize particles
-  useEffect(() => {
-    const initParticles = () => {
-      const newParticles = [];
-      for (let i = 0; i < particleCount; i++) {
-        newParticles.push({
-          x: Math.random() * 800,
-          y: Math.random() * 200,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 2,
-          r: Math.random() * 3 + 1,
-          color: colors[i % colors.length]
-        });
-      }
-      setParticles(newParticles);
-    };
-
-    initParticles();
-  }, [particleCount, colors]);
-
-  // Animation loop
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw particles
-      particles.forEach(particle => {
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        // Bounce off edges
-        if (particle.x <= 0 || particle.x >= canvas.width) particle.vx *= -1;
-        if (particle.y <= 0 || particle.y >= canvas.height) particle.vy *= -1;
-
-        // Draw particle with gooey effect
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
-        
-        // Color based on particle.color
-        const colors = [
-          'hsl(var(--primary))',
-          'hsl(var(--blue-500))',
-          'hsl(var(--blue-400))',
-          'hsl(var(--accent))'
-        ];
-        ctx.fillStyle = colors[particle.color - 1] || colors[0];
-        ctx.fill();
-      });
-
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [particles]);
-
   const handleItemClick = (index: number) => {
     setActiveIndex(index);
   };
 
   return (
-    <div className="relative w-full h-20 overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        width={800}
-        height={80}
-        className="absolute inset-0 w-full h-full opacity-20"
-      />
-      
-      <nav className="relative z-10 flex items-center justify-center h-full">
-        <div className="flex items-center space-x-8">
-          {items.map((item, index) => (
-            <Link
-              key={index}
-              to={item.href}
-              onClick={() => handleItemClick(index)}
-              className={`
-                relative px-6 py-3 text-lg font-medium transition-all duration-500 ease-out
-                ${activeIndex === index 
-                  ? 'text-white bg-gradient-to-r from-blue-600 to-blue-500 shadow-lg shadow-blue-500/25' 
-                  : 'text-slate-700 hover:text-blue-600'
-                }
-                rounded-full hover:scale-105 transform
-              `}
-              style={{
-                filter: activeIndex === index ? 'url(#gooey)' : 'none'
+    <nav className="relative flex items-center justify-center">
+      <div className="relative flex items-center space-x-2 p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20">
+        {/* Background indicator */}
+        <motion.div
+          className="absolute h-12 bg-gradient-to-r from-blue-600 to-blue-500 rounded-full shadow-lg"
+          animate={{
+            x: (hoveredIndex !== null ? hoveredIndex : activeIndex) * 120 + 8,
+            width: 104
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 30
+          }}
+        />
+        
+        {items.map((item, index) => (
+          <Link
+            key={index}
+            to={item.href}
+            onClick={() => handleItemClick(index)}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            className="relative z-10 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-full min-w-[104px] text-center"
+          >
+            <motion.span
+              className={`relative z-10 transition-colors duration-300 ${
+                (hoveredIndex !== null ? hoveredIndex : activeIndex) === index
+                  ? 'text-white'
+                  : 'text-slate-700 hover:text-slate-900'
+              }`}
+              animate={{
+                scale: (hoveredIndex !== null ? hoveredIndex : activeIndex) === index ? 1.05 : 1
               }}
+              transition={{ duration: 0.2 }}
             >
               {item.label}
-              
-              {/* Active indicator with gooey effect */}
-              {activeIndex === index && (
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 animate-pulse opacity-80" />
+            </motion.span>
+            
+            {/* Gooey hover effect */}
+            <AnimatePresence>
+              {hoveredIndex === index && (
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1.1, opacity: 0.3 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    background: 'radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)',
+                    filter: 'blur(8px)'
+                  }}
+                />
               )}
-            </Link>
-          ))}
-        </div>
-      </nav>
-
+            </AnimatePresence>
+          </Link>
+        ))}
+      </div>
+      
       {/* SVG Filter for gooey effect */}
       <svg className="absolute opacity-0 pointer-events-none">
         <defs>
@@ -162,7 +99,7 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
           </filter>
         </defs>
       </svg>
-    </div>
+    </nav>
   );
 };
 
